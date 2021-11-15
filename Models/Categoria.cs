@@ -11,5 +11,7 @@ namespace FinalLaboratorio4.Models
         [StringLength(20)]
         [MaxLength(20)]
         public string Descripcion { get; set; }
+
+        public List<Producto> Productos { get; set; }
     }
 }
