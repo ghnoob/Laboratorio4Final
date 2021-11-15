@@ -38,5 +38,7 @@ namespace FinalLaboratorio4.Models
 
         public int MarcaId { get; set; }
         public Marca Marca { get; set; }
+
+        public ICollection<Proveedor> Proveedores { get; set; }
     }
 }
