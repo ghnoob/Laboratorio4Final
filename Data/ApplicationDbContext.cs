@@ -11,5 +11,6 @@ namespace FinalLaboratorio4.Data
 
 
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
     }
 }
