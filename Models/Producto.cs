@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
+using FinalLaboratorio4.Validators;
 
 namespace FinalLaboratorio4.Models
 {
@@ -26,6 +27,9 @@ namespace FinalLaboratorio4.Models
 
         [Required]
         [NotMapped]
+        [AllowedExtensions(".png", ".jpeg", ".jpg")]
+        [MinFileSize]
+        [MaxFileSize(8 * 1024 * 1024)] // 8 mb
         public IFormFile Imagen { get; set; }
 
         [MaxLength(2000)]
