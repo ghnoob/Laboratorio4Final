@@ -449,3 +449,7 @@ $RECYCLE.BIN/
 
 # database files
 *.db
+
+# uploaded pictures
+wwwroot/img/productos/*
+!wwwroot/img/productos/.gitkeep
