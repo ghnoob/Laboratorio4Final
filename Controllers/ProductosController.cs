@@ -117,15 +117,18 @@ namespace FinalLaboratorio4.Controllers
             {
                 try
                 {
-                    FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen));
+                    if (producto.Imagen != null)
+                    {
+                        FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen));
 
-                    producto.UrlImagen = Path.GetRelativePath(
-                        _env.WebRootPath,
-                        FileManager.Create(
-                            producto.Imagen,
-                            Path.Combine(_env.WebRootPath, "img", "productos")
-                        )
-                    );
+                        producto.UrlImagen = Path.GetRelativePath(
+                            _env.WebRootPath,
+                            FileManager.Create(
+                                producto.Imagen,
+                                Path.Combine(_env.WebRootPath, "img", "productos")
+                            )
+                        );
+                    }
 
                     _context.Update(producto);
                     await _context.SaveChangesAsync();

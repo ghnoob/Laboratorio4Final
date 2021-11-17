@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
+using FoolProof.Core;
 using FinalLaboratorio4.Validators;
 
 namespace FinalLaboratorio4.Models
@@ -25,7 +26,8 @@ namespace FinalLaboratorio4.Models
         [StringLength(500)]
         public string Descripcion { get; set; }
 
-        [Required]
+        // requerida solo si UrlImagen no esta vacio, es decir cuando se crea y no cuando se edita
+        [RequiredIfEmpty("UrlImagen", ErrorMessage = "Imagen requirida.")]
         [NotMapped]
         [AllowedExtensions(".png", ".jpeg", ".jpg")]
         [MinFileSize]
