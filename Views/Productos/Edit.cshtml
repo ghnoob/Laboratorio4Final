@@ -54,6 +54,33 @@
                 <span asp-validation-for="MarcaId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        <tr>
+                            @{
+                                int cnt = 0;
+                                List<FinalLaboratorio4.Models.ProductoViewModels.AssignedProveedorData> proveedores = ViewBag.Proveedores;
+
+                                foreach (var proveedor in proveedores)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    {
+                                        @:</tr><tr>
+                                    }
+                                    @:<td>
+                                        <input type="checkbox"
+                                            name="selectedProveedores"
+                                            value="@proveedor.Id"
+                                            @(Html.Raw(proveedor.Asignado ? "checked=\"checked\"" : "")) />
+                                            @proveedor.Nombre
+                                    @:</td>
+                                }
+                                @:</tr>
+                            }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
