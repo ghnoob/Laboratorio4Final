@@ -4,71 +4,26 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Todos los productos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Favorito)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marca)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @if (!string.IsNullOrEmpty(item.UrlImagen))
-                {
-                    <img src="@item.UrlImagen" alt="imagen del producto">
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Favorito)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+
+<div class="container">
+    <div class="row">
+@foreach (Producto producto in Model) {
+    <div class="col-sm-3 mb-3">
+        <a asp-controller="Productos" asp-action="Details" asp-route-id="@producto.Id" class="text-reset">
+            <div class="card h-100">
+                <img class="card-img-top" src="@producto.UrlImagen" alt="imagen del producto" loading="lazy">
+                <div class="card-body">
+                    <h5 class="card-title">@producto.Nombre</h5>
+                    <p class="card-text">$@producto.Precio</p>
+                </div>
+            </div>
+        </a>
+    </div>
 }
-    </tbody>
-</table>
+    </div>
+</div>
