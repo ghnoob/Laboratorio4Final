@@ -33,7 +33,6 @@ namespace FinalLaboratorio4.Controllers
                 _context.Productos
                     .AsNoTracking()
                     .Include(p => p.Categoria)
-                    .Include(p => p.Marca)
                     .OrderBy(p => p.Nombre),
                 pageNumber ?? 1,
                 pageSize
