@@ -25,10 +25,19 @@ namespace FinalLaboratorio4.Controllers
         }
 
         // GET: Productos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber)
         {
-            var applicationDbContext = _context.Productos.Include(p => p.Categoria).Include(p => p.Marca);
-            return View(await applicationDbContext.ToListAsync());
+            int pageSize = 16;
+
+            return View(await PaginatedList<Producto>.CreateAsync(
+                _context.Productos
+                    .AsNoTracking()
+                    .Include(p => p.Categoria)
+                    .Include(p => p.Marca)
+                    .OrderBy(p => p.Nombre),
+                pageNumber ?? 1,
+                pageSize
+            ));
         }
 
         // GET: Productos/Details/5
