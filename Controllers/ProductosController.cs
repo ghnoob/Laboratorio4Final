@@ -71,7 +71,7 @@ namespace FinalLaboratorio4.Controllers
         {
             if (ModelState.IsValid)
             {
-                producto.UrlImagen = Path.GetRelativePath(
+                producto.UrlImagen = "/" + Path.GetRelativePath(
                     _env.WebRootPath,
                     FileManager.Create(
                         producto.Imagen,
@@ -148,9 +148,12 @@ namespace FinalLaboratorio4.Controllers
             {
                 if (producto.Imagen != null)
                 {
-                    FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen));
+                    if (!string.IsNullOrEmpty(producto.UrlImagen))
+                    {
+                        FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen.TrimStart('/')));
+                    }
 
-                    producto.UrlImagen = Path.GetRelativePath(
+                    producto.UrlImagen = "/" + Path.GetRelativePath(
                         _env.WebRootPath,
                         FileManager.Create(
                             producto.Imagen,
@@ -270,10 +273,14 @@ namespace FinalLaboratorio4.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var producto = await _context.Productos.FindAsync(id);
+
+            if (!string.IsNullOrEmpty(producto.UrlImagen))
+            {
+                FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen.TrimStart('/')));
+            }
+
             _context.Productos.Remove(producto);
             await _context.SaveChangesAsync();
-
-            FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen));
 
             return RedirectToAction(nameof(Index));
         }
