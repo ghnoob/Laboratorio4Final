@@ -10,9 +10,11 @@ using FinalLaboratorio4.Data;
 using FinalLaboratorio4.Models;
 using FinalLaboratorio4.Models.ProductoViewModels;
 using FinalLaboratorio4.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalLaboratorio4.Controllers
 {
+    [Authorize]
     public class ProductosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,6 +30,7 @@ namespace FinalLaboratorio4.Controllers
         }
 
         // GET: Productos
+        [AllowAnonymous]
         public async Task<IActionResult> Index(int? pageNumber)
         {
             int pageSize = 16;
@@ -43,6 +46,7 @@ namespace FinalLaboratorio4.Controllers
         }
 
         // GET: Productos/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
