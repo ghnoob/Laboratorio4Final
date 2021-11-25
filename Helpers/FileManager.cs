@@ -15,7 +15,7 @@ namespace FinalLaboratorio4.Helpers
                 file.CopyToAsync(fs);
             }
 
-            return outputPath;
+            return outputFileName;
         }
 
         public static void Delete(string path)

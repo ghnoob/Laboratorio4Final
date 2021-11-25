@@ -16,12 +16,15 @@ namespace FinalLaboratorio4.Controllers
     public class ProductosController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _env;
+
+        private const string ImagePathWeb = "/img/productos/";
+        private readonly string imagePathServer;
 
         public ProductosController(ApplicationDbContext context, IWebHostEnvironment env)
         {
             _context = context;
-            _env = env;
+
+            imagePathServer = Path.Combine(env.WebRootPath, "img", "productos");
         }
 
         // GET: Productos
@@ -79,13 +82,7 @@ namespace FinalLaboratorio4.Controllers
         {
             if (ModelState.IsValid)
             {
-                producto.UrlImagen = "/" + Path.GetRelativePath(
-                    _env.WebRootPath,
-                    FileManager.Create(
-                        producto.Imagen,
-                        Path.Combine(_env.WebRootPath, "img", "productos")
-                    )
-                );
+                producto.UrlImagen = ImagePathWeb + FileManager.Create(producto.Imagen, imagePathServer);
 
                 producto.Proveedores = new List<Proveedor>();
 
@@ -158,16 +155,10 @@ namespace FinalLaboratorio4.Controllers
                 {
                     if (!string.IsNullOrEmpty(producto.UrlImagen))
                     {
-                        FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen.TrimStart('/')));
+                        FileManager.Delete(Path.Combine(imagePathServer, producto.UrlImagen.Split('/').Last()));
                     }
 
-                    producto.UrlImagen = "/" + Path.GetRelativePath(
-                        _env.WebRootPath,
-                        FileManager.Create(
-                            producto.Imagen,
-                            Path.Combine(_env.WebRootPath, "img", "productos")
-                        )
-                    );
+                    producto.UrlImagen = ImagePathWeb + FileManager.Create(producto.Imagen, imagePathServer);
                 }
 
                 UpdateProductoProveedores(selectedProveedores, producto);
@@ -284,7 +275,7 @@ namespace FinalLaboratorio4.Controllers
 
             if (!string.IsNullOrEmpty(producto.UrlImagen))
             {
-                FileManager.Delete(Path.Combine(_env.WebRootPath, producto.UrlImagen.TrimStart('/')));
+                FileManager.Delete(Path.Combine(imagePathServer, producto.UrlImagen.Split('/').Last()));
             }
 
             _context.Productos.Remove(producto);
