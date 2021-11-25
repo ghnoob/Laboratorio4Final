@@ -98,6 +98,9 @@ namespace FinalLaboratorio4.Controllers
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
             ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Descripcion", producto.MarcaId);
+
+            PopulateProveedoresData();
+
             return View(producto);
         }
 
@@ -166,7 +169,6 @@ namespace FinalLaboratorio4.Controllers
                 }
 
                 UpdateProductoProveedores(selectedProveedores, producto);
-                PopulateProveedoresData(producto);
 
                 try
                 {
@@ -188,6 +190,9 @@ namespace FinalLaboratorio4.Controllers
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
             ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Descripcion", producto.MarcaId);
+
+            PopulateProveedoresData(producto);
+
             return View(producto);
         }
 
