@@ -16,9 +16,14 @@ namespace FinalLaboratorio4.Data
             modelBuilder.Entity<Producto>()
                 .Property(p => p.Favorito)
                 .HasDefaultValue(false);
+            modelBuilder.Entity<Producto>().Property(p => p.Nombre).UseCollation("NOCASE");
 
             modelBuilder.Entity<Categoria>().Property(c => c.Descripcion).UseCollation("NOCASE");
             modelBuilder.Entity<Categoria>().HasIndex(c => c.Descripcion).IsUnique();
+
+            modelBuilder.Entity<Marca>().Property(m => m.Descripcion).UseCollation("NOCASE");
+
+            modelBuilder.Entity<Proveedor>().Property(p => p.Nombre).UseCollation("NOCASE");
         }
 
 
