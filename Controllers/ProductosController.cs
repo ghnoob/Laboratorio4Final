@@ -236,7 +236,7 @@ namespace FinalLaboratorio4.Controllers
                     Nombre = p.Nombre,
                     Asignado = productoProveedores.Contains(p.Id)
                 }
-            ).ToList();
+            ).OrderBy(p => p.Nombre).ToList();
 
             ViewData["Proveedores"] = viewModel;
         }
