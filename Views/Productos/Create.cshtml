@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Crear</h1>
 
 <h4>Producto</h4>
 <hr />
@@ -50,41 +50,31 @@
                 <span asp-validation-for="Imagen" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <table>
-                        <tr>
-                            @{
-                                int cnt = 0;
-                                List<FinalLaboratorio4.Models.ProductoViewModels.AssignedProveedorData> proveedores = ViewBag.Proveedores;
+                <label asp-for="Proveedores" class="control-label"></label>
+                <div class="border border-rounded p-1 overflow-auto proveedores-list">
+                    @{
+                        List<FinalLaboratorio4.Models.ProductoViewModels.AssignedProveedorData> proveedores = ViewBag.Proveedores;
 
-                                foreach (var proveedor in proveedores)
-                                {
-                                    if (cnt++ % 3 == 0)
-                                    {
-                                        @:</tr><tr>
-                                    }
-                                    @:<td>
-                                        <input type="checkbox"
-                                            name="selectedProveedores"
-                                            value="@proveedor.Id"
-                                        />
-                                            @proveedor.Nombre
-                                    @:</td>
-                                }
-                                @:</tr>
-                            }
-                    </table>
+                        foreach (var proveedor in proveedores)
+                        {
+                            <input type="checkbox"
+                                name="selectedProveedores"
+                                value="@proveedor.Id"
+                            />
+                                @proveedor.Nombre<br>
+                        }
+                    }
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <button type="submit" class="btn btn-primary">Crear</button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver a la lista</a>
 </div>
 
 @section Scripts {
