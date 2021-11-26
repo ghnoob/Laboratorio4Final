@@ -31,15 +31,27 @@ namespace FinalLaboratorio4.Controllers
 
         // GET: Productos
         [AllowAnonymous]
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int? pageNumber, int? categoryId, string productName)
         {
+            ViewData["ProductName"] = productName;
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", categoryId?.ToString() ?? "");
+
             int pageSize = 16;
 
+            IQueryable<Producto> productos = _context.Productos.AsNoTracking();
+
+            if (categoryId != null)
+            {
+                productos = productos.Where(p => p.CategoriaId == categoryId);
+            }
+
+            if (!string.IsNullOrEmpty(productName))
+            {
+                productos = productos.Where(p => EF.Functions.Collate(p.Nombre, "NOCASE").StartsWith(productName));
+            }
+
             return View(await PaginatedList<Producto>.CreateAsync(
-                _context.Productos
-                    .AsNoTracking()
-                    .Include(p => p.Categoria)
-                    .OrderBy(p => p.Nombre),
+                productos.Include(p => p.Categoria).OrderBy(p => p.Nombre),
                 pageNumber ?? 1,
                 pageSize
             ));
