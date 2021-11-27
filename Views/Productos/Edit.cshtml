@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Precio" class="control-label"></label>
-                <input asp-for="Precio" class="form-control" />
+                <input type="number" step="0.01" asp-for="Precio" class="form-control" />
                 <span asp-validation-for="Precio" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,10 +38,8 @@
                 />
                 <span asp-validation-for="Imagen" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Favorito" /> @Html.DisplayNameFor(model => model.Favorito)
-                </label>
+            <div class="form-group">
+                <input type="checkbox" asp-for="Favorito" /> @Html.DisplayNameFor(model => model.Favorito)
             </div>
             <div class="form-group">
                 <label asp-for="CategoriaId" class="control-label"></label>
