@@ -35,7 +35,9 @@ namespace FinalLaboratorio4.Controllers
             }
 
             var categoria = await _context.Categorias
+                .Include(m => m.Productos.OrderBy(p => p.Nombre))
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (categoria == null)
             {
                 return NotFound();
