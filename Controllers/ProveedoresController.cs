@@ -21,7 +21,7 @@ namespace FinalLaboratorio4.Controllers
         // GET: Proveedores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Proveedores.ToListAsync());
+            return View(await _context.Proveedores.AsNoTracking().OrderBy(p => p.Nombre).ToListAsync());
         }
 
         // GET: Proveedores/Details/5
