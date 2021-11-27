@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace FinalLaboratorio4.Models
         [Required]
         [StringLength(20)]
         [MaxLength(20)]
+        [DisplayName("Descripción")]
         [Remote(
             "IsDescriptionValid",
             "Categorias",
