@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FinalLaboratorio4.Models
@@ -10,6 +11,7 @@ namespace FinalLaboratorio4.Models
         [Required]
         [StringLength(20)]
         [MaxLength(20)]
+        [DisplayName("Descripción")]
         public string Descripcion { get; set; }
 
         public List<Producto> Productos { get; set; }
