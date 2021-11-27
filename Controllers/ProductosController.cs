@@ -69,6 +69,7 @@ namespace FinalLaboratorio4.Controllers
             var producto = await _context.Productos
                 .Include(p => p.Categoria)
                 .Include(p => p.Marca)
+                .Include(p => p.Proveedores.OrderBy(pr => pr.Nombre))
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (producto == null)
             {
