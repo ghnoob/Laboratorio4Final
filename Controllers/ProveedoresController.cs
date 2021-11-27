@@ -19,14 +19,12 @@ namespace FinalLaboratorio4.Controllers
         }
 
         // GET: Proveedores
-        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Proveedores.ToListAsync());
         }
 
         // GET: Proveedores/Details/5
-        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
