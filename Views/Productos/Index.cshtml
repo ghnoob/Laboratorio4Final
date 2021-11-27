@@ -6,9 +6,12 @@
 
 <h1>Todos los productos</h1>
 
-<p>
-    <a asp-action="Create">Crear nuevo</a>
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Crear nuevo</a>
+    </p>   
+}
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
