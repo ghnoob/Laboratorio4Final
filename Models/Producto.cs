@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 using FoolProof.Core;
 using FinalLaboratorio4.Validators;
+using System.ComponentModel;
 
 namespace FinalLaboratorio4.Models
 {
@@ -24,6 +25,7 @@ namespace FinalLaboratorio4.Models
         [MaxLength(500)]
         [Required]
         [StringLength(500)]
+        [DisplayName("Descripción")]
         public string Descripcion { get; set; }
 
         // requerida solo si UrlImagen no esta vacio, es decir cuando se crea y no cuando se edita
@@ -39,10 +41,17 @@ namespace FinalLaboratorio4.Models
 
         public bool Favorito { get; set; }
 
+        [Required]
+        [DisplayName("Categoría")]
         public int CategoriaId { get; set; }
+
+        [DisplayName("Categoría")]
         public Categoria Categoria { get; set; }
 
+        [Required]
+        [DisplayName("Marca")]
         public int MarcaId { get; set; }
+
         public Marca Marca { get; set; }
 
         public ICollection<Proveedor> Proveedores { get; set; }
