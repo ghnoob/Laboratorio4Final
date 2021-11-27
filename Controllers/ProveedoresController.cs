@@ -33,7 +33,10 @@ namespace FinalLaboratorio4.Controllers
             }
 
             var proveedor = await _context.Proveedores
+                .Include(m => m.Productos)
+                .ThenInclude(p => p.Categoria)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (proveedor == null)
             {
                 return NotFound();
