@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FinalLaboratorio4.Models
@@ -16,6 +17,7 @@ namespace FinalLaboratorio4.Models
         [StringLength(20)]
         [MaxLength(20)]
         [Phone]
+        [DisplayName("Teléfono")]
         public string Telefono { get; set; }
 
         [Required]
