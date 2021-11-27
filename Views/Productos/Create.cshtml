@@ -32,12 +32,14 @@
                 <select asp-for="CategoriaId" class ="form-control" asp-items="ViewBag.CategoriaId">
                     <option selected disabled>Seleccione uno...</option>
                 </select>
+                <span asp-validation-for="CategoriaId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="MarcaId" class="control-label"></label>
                 <select asp-for="MarcaId" class ="form-control" asp-items="ViewBag.MarcaId">
                     <option selected disabled>Seleccione uno...</option>
                 </select>
+                <span asp-validation-for="MarcaId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Imagen" class="control-label"></label>
