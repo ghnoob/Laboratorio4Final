@@ -22,7 +22,7 @@ namespace FinalLaboratorio4.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Marcas.ToListAsync());
+            return View(await _context.Marcas.AsNoTracking().OrderBy(m => m.Descripcion).ToListAsync());
         }
 
         // GET: Marcas/Details/5
