@@ -47,3 +47,8 @@ body {
 .fa-bookmark {
   font-size: 1.2rem;
 }
+
+.form-group input[type=file] {
+  opacity: 1;
+  position: inherit;
+}
