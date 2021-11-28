@@ -307,6 +307,46 @@ namespace FinalLaboratorio4.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
+        // Para cambiar los favoritos dinamicamente con js
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> ToggleFavorite(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Producto producto = await _context.Productos.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            producto.Favorito = !producto.Favorito;
+
+            try
+            {
+                _context.Update(producto);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductoExists(producto.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Json(new { id = producto.Id, favorito = producto.Favorito });
+        }
+
         private bool ProductoExists(int id)
         {
             return _context.Productos.Any(e => e.Id == id);
