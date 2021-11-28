@@ -6,9 +6,13 @@
 
 <h1>Proveedores</h1>
 
-<p>
-    <a asp-action="Create">Crear nuevo</a>
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Crear nuevo</a>
+    </p>    
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -37,9 +41,16 @@
                 @Html.DisplayFor(modelItem => item.Localidad)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> <span>|</span>
+                }
+
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span>|</span> <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                }
             </td>
         </tr>
 }
