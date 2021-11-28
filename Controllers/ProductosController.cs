@@ -165,7 +165,6 @@ namespace FinalLaboratorio4.Controllers
                     p => p.Nombre,
                     p => p.Precio,
                     p => p.Descripcion,
-                    p => p.Favorito,
                     p => p.CategoriaId,
                     p => p.MarcaId,
                     p => p.Imagen
