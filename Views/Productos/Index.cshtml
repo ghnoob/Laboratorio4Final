@@ -10,7 +10,7 @@
 {
     <p>
         <a asp-action="Create">Crear nuevo</a>
-    </p>   
+    </p>
 }
 
 <form asp-action="Index" method="get">
@@ -35,27 +35,8 @@
 
 <div class="container">
     <div class="row">
-@foreach (Producto producto in Model) {
-    <div class="col-sm-3 mb-3">
-        <a asp-action="Details" asp-route-id="@producto.Id" class="text-reset">
-            <div class="card h-100">
-                <img class="card-img-top" src="@producto.UrlImagen" alt="imagen del producto" loading="lazy">
-                <div class="card-body">
-                    <h5 class="card-title">@producto.Nombre</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">@producto.Categoria.Descripcion</h6>
-                    <p class="card-text">$@producto.Precio</p>
-                    @if(User.Identity.IsAuthenticated)
-                    {
-                        <a asp-action="Edit" asp-route-id="@producto.Id" class="card-link">Editar</a>
-                        <a asp-action="Delete" asp-route-id="@producto.Id" class="card-link">Borrar</a>
-                    }
-                </div>
-                <div class="pb-1 pr-1 d-flex flex-row-reverse">
-                    <i class="@(producto.Favorito ? "fas" : "far") fa-bookmark"></i>
-                </div>
-            </div>
-        </a>
-    </div>
+@foreach (Producto p in Model) {
+    @await Component.InvokeAsync("CardProducto", new { producto = p })
 }
     </div>
 </div>
