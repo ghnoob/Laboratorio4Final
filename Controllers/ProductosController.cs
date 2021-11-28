@@ -95,7 +95,7 @@ namespace FinalLaboratorio4.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Precio,Descripcion,Imagen,CategoriaId,MarcaId,Favorito")] Producto producto, string[] selectedProveedores)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Precio,Descripcion,Imagen,CategoriaId,MarcaId")] Producto producto, string[] selectedProveedores)
         {
             if (ModelState.IsValid)
             {
