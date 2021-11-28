@@ -52,3 +52,7 @@ body {
   opacity: 1;
   position: inherit;
 }
+
+.js-toggle-favorite {
+  cursor: pointer;
+}
