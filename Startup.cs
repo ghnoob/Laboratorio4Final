@@ -28,7 +28,8 @@ namespace FinalLaboratorio4
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-                .AddDefaultIdentity<IdentityUser>(options => {
+                .AddDefaultIdentity<IdentityUser>(options =>
+                {
                     options.SignIn.RequireConfirmedAccount = false;
                     // Password settings.
                     options.Password.RequireDigit = false;

@@ -306,7 +306,6 @@ namespace FinalLaboratorio4.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
         // Para cambiar los favoritos dinamicamente con js
         [HttpPost]
         [AllowAnonymous]
