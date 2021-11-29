@@ -56,3 +56,7 @@ body {
 .js-toggle-favorite {
   cursor: pointer;
 }
+
+select.form-control > option {
+  background-color: #1F2251;
+}
