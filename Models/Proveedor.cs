@@ -14,8 +14,8 @@ namespace FinalLaboratorio4.Models
         public string Nombre { get; set; }
 
         [Required]
-        [StringLength(20)]
-        [MaxLength(20)]
+        [StringLength(50)]
+        [MaxLength(50)]
         [Phone]
         [DisplayName("Teléfono")]
         public string Telefono { get; set; }
@@ -26,13 +26,13 @@ namespace FinalLaboratorio4.Models
         public string Domicilio { get; set; }
 
         [Required]
-        [StringLength(20)]
-        [MaxLength(20)]
+        [StringLength(50)]
+        [MaxLength(50)]
         public string Localidad { get; set; }
 
         [Required]
-        [StringLength(20)]
-        [MaxLength(20)]
+        [StringLength(50)]
+        [MaxLength(50)]
         public string Provincia { get; set; }
 
         public ICollection<Producto> Productos { get; set; }

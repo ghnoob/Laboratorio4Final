@@ -9,8 +9,8 @@ namespace FinalLaboratorio4.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(20)]
-        [MaxLength(20)]
+        [StringLength(50)]
+        [MaxLength(50)]
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
 
