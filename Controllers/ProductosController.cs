@@ -99,7 +99,7 @@ namespace FinalLaboratorio4.Controllers
         {
             if (ModelState.IsValid)
             {
-                producto.UrlImagen = ImagePathWeb + FileManager.Create(producto.Imagen, imagePathServer);
+                producto.UrlImagen = ImagePathWeb + await FileManager.Create(producto.Imagen, imagePathServer);
 
                 producto.Proveedores = new List<Proveedor>();
 
@@ -180,7 +180,7 @@ namespace FinalLaboratorio4.Controllers
                         FileManager.Delete(Path.Combine(imagePathServer, producto.UrlImagen.Split('/').Last()));
                     }
 
-                    producto.UrlImagen = ImagePathWeb + FileManager.Create(producto.Imagen, imagePathServer);
+                    producto.UrlImagen = ImagePathWeb + await FileManager.Create(producto.Imagen, imagePathServer);
                 }
 
                 UpdateProductoProveedores(selectedProveedores, producto);
