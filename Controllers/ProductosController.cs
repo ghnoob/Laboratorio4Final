@@ -127,6 +127,7 @@ namespace FinalLaboratorio4.Controllers
 
             Producto producto = await _context.Productos
                 .Include(p => p.Proveedores)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(p => p.Id == id);
 
             if (producto == null)
@@ -167,7 +168,8 @@ namespace FinalLaboratorio4.Controllers
                     p => p.Descripcion,
                     p => p.CategoriaId,
                     p => p.MarcaId,
-                    p => p.Imagen
+                    p => p.Imagen,
+                    p => p.Proveedores
                 )
             )
             {
@@ -185,7 +187,6 @@ namespace FinalLaboratorio4.Controllers
 
                 try
                 {
-                    _context.Update(producto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -201,9 +202,11 @@ namespace FinalLaboratorio4.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
             ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Descripcion", producto.MarcaId);
 
+            UpdateProductoProveedores(selectedProveedores, producto);
             PopulateProveedoresData(producto);
 
             return View(producto);
