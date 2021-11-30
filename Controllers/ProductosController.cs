@@ -34,7 +34,12 @@ namespace FinalLaboratorio4.Controllers
         public async Task<IActionResult> Index(int? pageNumber, int? categoryId, string productName)
         {
             ViewData["ProductName"] = productName;
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", categoryId?.ToString() ?? "");
+            ViewData["CategoriaId"] = new SelectList(
+                _context.Categorias.AsNoTracking().OrderBy(c => c.Descripcion),
+                "Id",
+                "Descripcion",
+                categoryId?.ToString() ?? ""
+            );
 
             int pageSize = 16;
 
@@ -82,8 +87,8 @@ namespace FinalLaboratorio4.Controllers
         // GET: Productos/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion");
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Descripcion");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias.AsNoTracking().OrderBy(c => c.Descripcion), "Id", "Descripcion");
+            ViewData["MarcaId"] = new SelectList(_context.Marcas.AsNoTracking().OrderBy(m => m.Descripcion), "Id", "Descripcion");
 
             PopulateProveedoresData();
 
@@ -109,8 +114,8 @@ namespace FinalLaboratorio4.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Descripcion", producto.MarcaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias.AsNoTracking().OrderBy(c => c.Descripcion), "Id", "Descripcion");
+            ViewData["MarcaId"] = new SelectList(_context.Marcas.AsNoTracking().OrderBy(m => m.Descripcion), "Id", "Descripcion");
 
             PopulateProveedoresData();
 
@@ -135,8 +140,8 @@ namespace FinalLaboratorio4.Controllers
                 return NotFound();
             }
 
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Descripcion", producto.MarcaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias.AsNoTracking().OrderBy(c => c.Descripcion), "Id", "Descripcion");
+            ViewData["MarcaId"] = new SelectList(_context.Marcas.AsNoTracking().OrderBy(m => m.Descripcion), "Id", "Descripcion");
 
             PopulateProveedoresData(producto);
 
@@ -203,8 +208,8 @@ namespace FinalLaboratorio4.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Descripcion", producto.CategoriaId);
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "Id", "Descripcion", producto.MarcaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias.AsNoTracking().OrderBy(c => c.Descripcion), "Id", "Descripcion");
+            ViewData["MarcaId"] = new SelectList(_context.Marcas.AsNoTracking().OrderBy(m => m.Descripcion), "Id", "Descripcion");
 
             UpdateProductoProveedores(selectedProveedores, producto);
             PopulateProveedoresData(producto);
