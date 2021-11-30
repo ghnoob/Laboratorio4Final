@@ -9,8 +9,8 @@ namespace FinalLaboratorio4.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(20)]
-        [MaxLength(20)]
+        [StringLength(50)]
+        [MaxLength(50)]
         public string Nombre { get; set; }
 
         [Required]
@@ -21,8 +21,8 @@ namespace FinalLaboratorio4.Models
         public string Telefono { get; set; }
 
         [Required]
-        [StringLength(20)]
-        [MaxLength(20)]
+        [StringLength(50)]
+        [MaxLength(50)]
         public string Domicilio { get; set; }
 
         [Required]
