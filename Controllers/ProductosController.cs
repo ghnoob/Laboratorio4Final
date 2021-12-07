@@ -173,8 +173,7 @@ namespace FinalLaboratorio4.Controllers
                     p => p.Descripcion,
                     p => p.CategoriaId,
                     p => p.MarcaId,
-                    p => p.Imagen,
-                    p => p.Proveedores
+                    p => p.Imagen
                 )
             )
             {
