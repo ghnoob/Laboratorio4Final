@@ -261,12 +261,12 @@ namespace FinalLaboratorio4.Controllers
 
             foreach (Proveedor proveedor in _context.Proveedores)
             {
-                if (
-                    proveedoresHS.Contains(proveedor.Id.ToString())
-                    && !productoProveedores.Contains(proveedor.Id)
-                )
+                if (proveedoresHS.Contains(proveedor.Id.ToString()))
                 {
-                    producto.Proveedores.Add(proveedor);
+                    if (!productoProveedores.Contains(proveedor.Id))
+                    {
+                        producto.Proveedores.Add(proveedor);
+                    }
                 }
                 else if (productoProveedores.Contains(proveedor.Id))
                 {
